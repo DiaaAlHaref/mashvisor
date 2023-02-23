@@ -217,7 +217,8 @@ public class Tests {
         WebElement Mortgage_Amount_Locator = driver.findElement(By.xpath("(//div[@class='RentalStrategy_extraRows__j0wmN']/span)[1]"));
         String Mortgage_Amount = Mortgage_Amount_Locator.getText();
         Mortgage_Amount = Mortgage_Amount.replace("$", "").replace(",", "");
-        Assert.assertEquals(Mortgage_Amount, "1323");
+        Assert.assertEquals(Mortgage_Amount, MortgagePayment
+                .CalculateMortgage(PrincipalAmount,AnnualInterestFloat,TermInYearsValueInt));
     }
 
 
@@ -279,15 +280,14 @@ public class Tests {
         float AnnualInterestFloat = AnnualInterestValue / 100;
 
         //GetCalculateMortgage
-        System.out.println(MortgagePayment
-                .CalculateMortgage(PrincipalAmount, AnnualInterestFloat, TermInYearsValueInt));
         WebElement MonthlyExpenses = driver.findElement(By.xpath("//td[@class='RentalStrategy_tdHeadline__PAmFH']//span[contains(.,'MONTHLY EXPENSES')]"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", MonthlyExpenses);
         MonthlyExpenses.click();
         WebElement Mortgage_Amount_Locator = driver.findElement(By.xpath("(//div[@class='RentalStrategy_extraRows__j0wmN']/span)[1]"));
         String Mortgage_Amount = Mortgage_Amount_Locator.getText();
         Mortgage_Amount = Mortgage_Amount.replace("$", "").replace(",", "");
-        Assert.assertEquals(Mortgage_Amount, "1725");
+        Assert.assertEquals(Mortgage_Amount, MortgagePayment
+                .CalculateMortgage(PrincipalAmount,AnnualInterestFloat,TermInYearsValueInt));
     }
 
     @AfterMethod
